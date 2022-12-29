@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://r36z.ucc.ovgu.de/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://r36z.ucc.ovgu.de/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://r36z.ucc.ovgu.de/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZSD_040_C_MM_DATA_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZSD_040_C_MM_DATAType" sap:label="view for material data" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material_Nr"/>
+                    <PropertyRef Name="Werks"/>
+                </Key>
+                <Property Name="Material_Nr" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Material Number"/>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Plant"/>
+                <Property Name="Created_On" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created On"/>
+                <Property Name="Created_By" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created by" sap:quickinfo="Name of Person who Created the Object"/>
+                <Property Name="Last_Changed" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Last Change" sap:quickinfo="Date of Last Change"/>
+                <Property Name="Changed_By" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed by" sap:quickinfo="Name of person who changed object"/>
+                <Property Name="Complete_Status" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Compl. maint. status" sap:quickinfo="Maintenance status of complete material"/>
+                <Property Name="Maint_status" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Maintenance status"/>
+                <Property Name="Lvorm" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="DF at client level" sap:quickinfo="Flag Material for Deletion at Client Level"/>
+                <Property Name="Material_Type" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Material type"/>
+                <Property Name="Industry_Sector" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Industry Sector"/>
+                <Property Name="Material_Group" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Material Group"/>
+                <Property Name="Bismt" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Old material number"/>
+                <Property Name="Base_Unit" Type="Edm.String" MaxLength="3" sap:label="Base Unit of Measure" sap:semantics="unit-of-measure"/>
+                <Property Name="Order_Unit" Type="Edm.String" MaxLength="3" sap:label="Order Unit" sap:quickinfo="Purchase Order Unit of Measure" sap:semantics="unit-of-measure"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="40" sap:label="Material description"/>
+                <Property Name="Meinh" Type="Edm.String" MaxLength="3" sap:label="AlternativeUnit" sap:quickinfo="Alternative Unit of Measure for Stockkeeping Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="Brgew" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="Gewei" sap:label="Gross weight"/>
+                <Property Name="Gewei" Type="Edm.String" MaxLength="3" sap:label="Weight unit" sap:quickinfo="Weight Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="TextMeinh" Type="Edm.String" MaxLength="10" sap:label="Measuremt unit text" sap:quickinfo="Unit of Measurement Text (Maximum 10 Characters)"/>
+                <Property Name="TextGewei" Type="Edm.String" MaxLength="10" sap:label="Measuremt unit text" sap:quickinfo="Unit of Measurement Text (Maximum 10 Characters)"/>
+                <Property Name="PlantPstat" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Maintenance status"/>
+                <Property Name="PlantName" Type="Edm.String" MaxLength="61" sap:display-format="UpperCase"/>
+            </EntityType>
+            <EntityContainer Name="ZSD_040_C_MM_DATA_CDS_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZSD_040_C_MM_DATA" EntityType="ZSD_040_C_MM_DATA_CDS.ZSD_040_C_MM_DATAType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="https://r36z.ucc.ovgu.de/sap/opu/odata/sap/ZSD_040_C_MM_DATA_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://r36z.ucc.ovgu.de/sap/opu/odata/sap/ZSD_040_C_MM_DATA_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
